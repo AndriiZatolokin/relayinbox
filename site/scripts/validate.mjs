@@ -59,7 +59,11 @@ for (const route of [...routes, '404.html']) {
   const visible = html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]*>/g, ' ');
   assert(!/100% secure|nobody can access|guaranteed (?:delivery|recommendations)|AI-powered translation subscription|unlimited free forwarding/i.test(visible), `${file}: unverified product claim`);
   assert(!/\d{7,}:[A-Za-z0-9_-]{25,}/.test(html), `${file}: possible bot token`);
-  if (!product.publicReleaseVerified) assert(!tags.some(t => t.a.href?.startsWith('https://play.google.com/store/apps/details')), `${file}: unverified installation link`);
+  for (const tag of tags.filter(t => t.a.href?.startsWith('https://play.google.com/store/apps/details'))) assert.equal(tag.a.href, product.playUrl, `${file}: unexpected Google Play listing`);
+  if (!product.publicReleaseVerified) {
+    assert(!schemas.some(s => s.installUrl), `${file}: unverified public installation claim`);
+    if (tags.some(t => t.a.href === product.playUrl)) assert(/testing|tester/i.test(visible), `${file}: missing test access disclosure`);
+  }
   if (!is404) {
     for (const expected of routes) assert(tags.some(t => t.a.href === c.path(expected)), `${file}: missing navigation route ${expected}`);
     const headingLevels = [...html.matchAll(/<h([1-6])\b/g)].map(m => Number(m[1]));

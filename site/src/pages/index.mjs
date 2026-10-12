@@ -1,5 +1,6 @@
 import { config as c } from '../data/site-config.mjs';
 import { link } from '../layouts/page.mjs';
+import { product as p } from '../data/product-facts.mjs';
 export default {
   route: '', label: 'Overview', modified: '2026-10-12',
   title: 'RelayInbox — Forward Android SMS to Telegram',
@@ -9,8 +10,8 @@ export default {
       <p class="eyebrow">A small utility for Android</p>
       <h1>SMS from your other phone.<br>In Telegram.</h1>
       <p class="lead">Leave the receiving phone at home. RelayInbox forwards its incoming SMS to your personal Telegram bot, ready to read on another phone or computer.</p>
-      <div class="actions">${link('setup/', 'Set up RelayInbox', 'button')}${link('privacy/', 'How your data is handled', 'text-link')}</div>
-      <p class="availability">Currently in testing. Public Google Play release pending.</p>
+      <div class="actions"><a href="${p.playUrl}" class="button">Open in Google Play</a>${link('setup/', 'Setup guide', 'text-link')}</div>
+      <p class="availability">Currently in testing. Google Play access may require an authorized tester account.</p>
     </div>
     <figure class="app-preview">
       <div class="screens">
@@ -34,7 +35,7 @@ export default {
   </section>
   <section class="editorial-row">
     <div class="row-heading"><p class="eyebrow">Getting started</p><h2>Your phone.<br>Your bot.</h2>${link('setup/', 'Open the setup guide', 'text-link')}</div>
-    <div class="row-body"><ol class="setup-steps"><li><h3>Install on the receiving Android phone</h3><p>Use the developer’s authorized test distribution while public availability is pending.</p></li><li><h3>Connect your personal Telegram bot</h3><p>Create a bot through BotFather, press Start in its chat, then paste the token inside RelayInbox. Keep the token private.</p></li><li><h3>Enable forwarding and send a test SMS</h3><p>Read the disclosure, grant SMS access, and turn forwarding on. A harmless real SMS checks the full path.</p></li></ol></div>
+    <div class="row-body"><ol class="setup-steps"><li><h3>Install on the receiving Android phone</h3><p>Open the Google Play listing with your authorized tester account. If it is unavailable, contact the developer for access.</p></li><li><h3>Connect your personal Telegram bot</h3><p>Create a bot through BotFather, press Start in its chat, then paste the token inside RelayInbox. Keep the token private.</p></li><li><h3>Enable forwarding and send a test SMS</h3><p>Read the disclosure, grant SMS access, and turn forwarding on. A harmless real SMS checks the full path.</p></li></ol></div>
   </section>
   <section class="editorial-row">
     <div class="row-heading"><p class="eyebrow">Everyday use</p><h2>See what arrived.<br>Check what is waiting.</h2></div>
@@ -46,6 +47,6 @@ export default {
   </section>
   <section class="editorial-row release-row" aria-labelledby="availability">
     <div class="row-heading"><p class="eyebrow">Availability</p><h2 id="availability">In testing.</h2></div>
-    <div class="row-body"><p>The 1.1 test release implements 14 days of free access followed by a one-time Google Play purchase, with no subscription or automatic charge. Regional checkout prices and public release availability remain unconfirmed.</p><p class="owner-note"><strong>TODO — owner confirmation:</strong> add the verified public Google Play installation link and release availability. These guides describe the current test build.</p><p>Questions about SIM cards, travel, iPhone access, or offline delivery? ${link('faq/', 'Read the FAQ')}.</p></div>
+    <div class="row-body"><p>The 1.1 test release implements 14 days of free access followed by a one-time Google Play purchase, with no subscription or automatic charge. Regional checkout prices and public release availability remain unconfirmed.</p><p><a href="${p.playUrl}">Open RelayInbox in Google Play</a>. Testing access may be restricted. If Google Play says the app is unavailable, <a href="mailto:${p.contact}">contact the developer about test access</a>. These guides describe the current test build.</p><p>Questions about SIM cards, travel, iPhone access, or offline delivery? ${link('faq/', 'Read the FAQ')}.</p></div>
   </section>`,
 };

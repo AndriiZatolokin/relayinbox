@@ -5,7 +5,7 @@ export const product = Object.freeze({
   packageName: 'app.relayinbox.android',
   developer: 'Andrii Zatolokin',
   contact: 'zatolokinandrey@gmail.com',
-  playUrl: null,
+  playUrl: 'https://play.google.com/store/apps/details?id=app.relayinbox.android',
   publicReleaseVerified: false,
   policyUrl: 'https://andriizatolokin.github.io/app-privacy-policies/relayinbox/privacy-policy.html',
   modified: '2026-10-12',
