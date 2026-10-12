@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>RelayInbox</title>
+  <desc>A message and a paper plane on a blue background.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0969E6"/>
+      <stop offset="1" stop-color="#053CA9"/>
+    </linearGradient>
+    <linearGradient id="message" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EAF2FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#background)"/>
+  <path d="M0 449C172 375 346 345 512 199V512H0Z" fill="#043593" opacity=".4"/>
+  <path d="M79 222C79 185 101 166 137 166H252C287 166 309 188 309 221V302C309 336 287 358 252 358H180L128 401C121 407 117 403 117 395V357C92 351 79 332 79 302Z" fill="url(#message)"/>
+  <rect x="116" y="218" width="144" height="17" rx="8.5" fill="#A6C9FF"/>
+  <rect x="116" y="256" width="105" height="17" rx="8.5" fill="#A6C9FF"/>
+  <path d="M199 313C273 302 334 256 370 187" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+  <path d="M299 165L431 117C438 115 443 120 440 127L402 248C400 255 393 257 388 252L348 210L307 188C295 182 291 170 299 165Z" fill="#FFFFFF"/>
+  <path d="M348 210L415 140L360 221L351 241Z" fill="#B1CEFF"/>
+</svg>

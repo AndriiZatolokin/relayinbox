@@ -1,0 +1,71 @@
+name: RelayInbox website
+
+on:
+  push:
+    branches: [main]
+    paths: ['site/**', '.github/workflows/deploy-pages.yml']
+  pull_request:
+    paths: ['site/**', '.github/workflows/deploy-pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: relayinbox-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    env:
+      SITE_ORIGIN: ${{ vars.SITE_ORIGIN || 'https://andriizatolokin.github.io' }}
+      SITE_BASE_PATH: ${{ vars.SITE_BASE_PATH || '/relayinbox/' }}
+      ALLOW_GPTBOT: ${{ vars.ALLOW_GPTBOT || 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm run check
+      - name: Check domain migration URL configurations
+        run: |
+          SITE_ORIGIN=https://example.org SITE_BASE_PATH=/ npm run check
+          SITE_ORIGIN=https://example.org SITE_BASE_PATH=/products/relayinbox/ npm run check
+          npm run check
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy static artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
+  smoke:
+    needs: deploy
+    runs-on: ubuntu-latest
+    env:
+      SITE_ORIGIN: ${{ vars.SITE_ORIGIN || 'https://andriizatolokin.github.io' }}
+      SITE_BASE_PATH: ${{ vars.SITE_BASE_PATH || '/relayinbox/' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run smoke
+        working-directory: site
