@@ -2,7 +2,7 @@ import { config as c } from '../data/site-config.mjs';
 import { product as p } from '../data/product-facts.mjs';
 export const escape = (value) => String(value).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
 export const link = (route, text, className = '') => `<a href="${c.path(route)}"${className ? ` class="${className}"` : ''}>${text}</a>`;
-const routes = [['', 'Overview'], ['setup/', 'Setup'], ['privacy/', 'Privacy & security'], ['faq/', 'FAQ'], ['guides/forward-android-sms-to-telegram/', 'SMS guide']];
+const routes = [['', 'App'], ['setup/', 'Setup'], ['privacy/', 'Privacy'], ['faq/', 'FAQ'], ['guides/forward-android-sms-to-telegram/', 'Guide']];
 export function render(page) {
   const canonical = c.url(page.route);
   const schema = [{
@@ -48,7 +48,7 @@ export function render(page) {
   <meta name="twitter:description" content="${escape(page.description)}">
   <meta name="twitter:image" content="${c.url('assets/og-image.png')}">
   <meta name="twitter:image:alt" content="RelayInbox — Android SMS to your Telegram bot">
-  <meta name="theme-color" content="#164ccd">
+  <meta name="theme-color" content="#fafaf7">
   <link rel="icon" href="${c.path('favicon.svg')}" type="image/svg+xml">
   <link rel="apple-touch-icon" href="${c.path('assets/app-icon.png')}">
   <link rel="stylesheet" href="${c.path('assets/site.css')}">
@@ -64,7 +64,7 @@ export function render(page) {
     ${page.route ? `<div class="breadcrumb">${link('', 'RelayInbox')} <span aria-hidden="true">/</span> ${escape(page.label)}</div>` : ''}
     ${page.body}
   </main>
-  <footer class="wrap footer"><div><a class="brand" href="${c.path()}">RelayInbox</a><p>Keep your receiving phone. Bring its SMS with you.</p></div>
+  <footer class="wrap footer"><div><a class="brand" href="${c.path()}">RelayInbox</a><p>Android SMS forwarding to Telegram.</p></div>
     <div><a href="${p.policyUrl}">Legal Privacy Policy</a><a href="mailto:${p.contact}">Contact the developer</a><p>No forms, cookies, or analytics scripts on this site.<br>GitHub processes hosting requests under its <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">privacy statement</a>.</p></div>
   </footer>
 </body>
