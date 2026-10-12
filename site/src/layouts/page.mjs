@@ -29,6 +29,7 @@ export function render(page) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="9Hyc4Jbb0pttM0RVQ7v0pcHP7t87GrtdNHul8kogtsk">
   <title>${escape(page.title)}</title>
   <meta name="description" content="${escape(page.description)}">
   <meta name="robots" content="${page.noindex ? 'noindex, follow' : 'index, follow'}">
