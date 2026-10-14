@@ -1,5 +1,7 @@
 import { link } from '../layouts/page.mjs';
 const questions = [
+  ['Can I see who is calling the receiving phone?', 'Yes. Optional incoming caller-number alerts send the number to your Telegram bot on supported Android 10+ phones. Enable the feature and select RelayInbox for the Android caller-ID/screening role; this can replace another app in that role. Hidden numbers are unavailable. Saved-contact calls require optional Contacts access; RelayInbox does not read or upload your address book. This sends an alert, not call audio. Separate call-state alerts can also report ringing, active, and ended states.'],
+  ['Can RelayInbox warn me about the phone’s battery?', 'Yes. Optional Telegram alerts warn when the receiving phone reaches 15%, 10%, and 5% battery, and when charging reaches your chosen level. The phone needs power and internet to deliver alerts; Android background restrictions can delay them. These are battery alerts, not continuous remote monitoring or an offline-device alarm.'],
   ['Can I receive SMS from another Android phone?', 'Yes. Install RelayInbox on the Android phone receiving the SMS, then read forwarded messages in your Telegram bot chat on another phone or computer. The receiving phone must remain powered and able to receive SMS.'],
   ['Can I forward SMS to Telegram?', 'That is RelayInbox’s core purpose. Grant Receive SMS access, connect your personal bot, and enable forwarding. The app sends selected incoming messages directly to Telegram Bot API.'],
   ['Does RelayInbox require a subscription?', 'The 1.1 test release implements a 14-day trial followed by a one-time Google Play purchase, without subscription or automatic charge. Public release availability and regional checkout prices are not yet confirmed. After expiry, new events are not accepted for forwarding without full access; accepted messages may still be delivered.'],
@@ -14,7 +16,7 @@ const questions = [
   ['What happens when the Android phone goes offline?', 'Eligible incoming SMS accepted while forwarding and access are enabled wait locally for internet. Android can delay retries. Configuration errors need correction and a retry. Messages received while forwarding is paused are not queued, and force-stop blocks background receivers until the app is opened again.'],
 ];
 export default {
-  route: 'faq/', label: 'FAQ', modified: '2026-10-12',
+  route: 'faq/', label: 'FAQ', modified: '2026-10-14',
   title: 'RelayInbox FAQ — Second-Phone SMS, Telegram, and Offline Delivery',
   description: 'Answers about RelayInbox subscriptions, SIM requirements, travel, OTP forwarding, personal bots, iPhone access, and what happens when Android goes offline.',
   body: `<p class="eyebrow">Common questions</p><h1>Before you leave the phone behind.</h1><p class="lead">Practical answers about SMS forwarding with RelayInbox. These answers describe the current Android test build; public launch has not been confirmed.</p><div class="faq">${questions.map(([q, a]) => `<section><h2>${q}</h2><p>${a}</p></section>`).join('')}</div><aside class="privacy-panel"><h2>Ready to check the full path?</h2><p>${link('setup/', 'Follow the setup guide')} and send a harmless real SMS. Read ${link('privacy/', 'how your message is stored and delivered')} before forwarding sensitive information.</p></aside>`,

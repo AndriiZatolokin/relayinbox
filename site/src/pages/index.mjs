@@ -2,14 +2,15 @@ import { config as c } from '../data/site-config.mjs';
 import { link } from '../layouts/page.mjs';
 import { product as p } from '../data/product-facts.mjs';
 export default {
-  route: '', label: 'Overview', modified: '2026-10-12',
+  route: '', label: 'Overview', modified: '2026-10-14',
   title: 'RelayInbox — Forward Android SMS to Telegram',
-  description: 'Read incoming SMS from your second Android phone in Telegram. Learn how RelayInbox connects your personal bot, handles offline delivery, and protects credentials.',
+  description: 'Receive SMS, incoming caller numbers, and battery alerts from your second Android phone in Telegram. Personal bot, direct delivery, and a one-time purchase after a 14-day trial.',
   body: `<section class="hero">
     <div class="hero-copy">
       <p class="eyebrow">A small utility for Android</p>
       <h1>SMS from your other phone.<br>In Telegram.</h1>
-      <p class="lead">Leave the receiving phone at home. RelayInbox forwards its incoming SMS to your personal Telegram bot, ready to read on another phone or computer.</p>
+      <p class="lead">Leave the receiving phone at home. Get its SMS, incoming caller numbers, and battery alerts in your personal Telegram bot, ready to read on another phone or computer.</p>
+      <p class="supporting">14 days to try the current test build. Then one purchase, with no subscription or automatic charge.</p>
       <div class="actions"><a href="${p.playUrl}" class="button">Open in Google Play</a>${link('setup/', 'Setup guide', 'text-link')}</div>
       <p class="availability">Currently in testing. Google Play access may require an authorized tester account.</p>
     </div>
@@ -26,6 +27,18 @@ export default {
     <div><dt>Destination</dt><dd>Your personal Telegram bot</dd></div>
     <div><dt>Message relay</dt><dd>Direct from your phone to Telegram</dd></div>
   </dl>
+  <section class="editorial-row" aria-labelledby="phone-updates">
+    <div class="row-heading"><p class="eyebrow">More than SMS</p><h2 id="phone-updates">Keep an eye on the phone you left behind.</h2></div>
+    <div class="row-body"><dl class="privacy-facts">
+      <div><dt>Incoming SMS</dt><dd>Read messages in Telegram, with sender and text filters to skip unwanted SMS.</dd></div>
+      <div><dt>Caller numbers</dt><dd>Enable incoming-call alerts to see the caller’s number in Telegram. Available on supported Android 10+ phones with the caller-ID/screening role enabled.</dd></div>
+      <div><dt>Battery alerts</dt><dd>Get low-battery warnings at 15%, 10%, and 5%, and an alert when charging reaches your chosen level.</dd></div>
+    </dl><p class="supporting">Caller alerts report an incoming call; they do not relay call audio. Hidden numbers are unavailable, and saved-contact calls require optional Contacts access. Call and battery alerts are optional.</p></div>
+  </section>
+  <section class="editorial-row">
+    <div class="row-heading"><p class="eyebrow">Why RelayInbox</p><h2>Your bot.<br>One purchase.</h2></div>
+    <div class="row-body"><h3>No RelayInbox account or relay server</h3><p>Your phone sends directly to Telegram using your personal bot. No RelayInbox account is needed. Telegram still processes and stores the delivered content.</p><h3>One purchase for the current features</h3><p>The 1.1 test build includes SMS forwarding, caller-number alerts, and battery alerts in one unlock after a 14-day trial. There is no recurring subscription. Regional checkout prices remain unconfirmed.</p><h3>A delivery state you can check</h3><p>See what is pending, what was sent, and what needs attention. A local queue keeps accepted messages while internet is unavailable; temporary failures retry automatically. Diagnostics and a connection test help you troubleshoot.</p>${link('faq/', 'Read feature requirements and answers', 'text-link')}</div>
+  </section>
   <section class="editorial-row">
     <div class="row-heading"><p class="eyebrow">How it works</p><h2>The phone stays.<br>The SMS reaches you.</h2></div>
     <div class="row-body"><p>The Android phone still receives the SMS. With permission granted and forwarding enabled, RelayInbox sends selected messages directly to Telegram Bot API over HTTPS.</p>
