@@ -5,21 +5,30 @@ export default {
   route: '', label: 'Overview', modified: '2026-10-14',
   title: 'RelayInbox — Forward Android SMS to Telegram',
   description: 'Receive SMS, incoming caller numbers, and battery alerts from your second Android phone in Telegram. Personal bot, direct delivery, and a one-time purchase after a 14-day trial.',
+  story: true,
   body: `<section class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">A small utility for Android</p>
-      <h1>SMS from your other phone.<br>In Telegram.</h1>
+      <p class="eyebrow">Your SIM stays home. You stay connected.</p>
+      <h1>SMS from your other phone.<br><span class="hero-accent">In Telegram.</span></h1>
       <p class="lead">Leave the receiving phone at home. Get its SMS, incoming caller numbers, and battery alerts in your personal Telegram bot, ready to read on another phone or computer.</p>
       <p class="supporting">14 days to try the current test build. Then one purchase, with no subscription or automatic charge.</p>
       <div class="actions"><a href="${p.playUrl}" class="button">Open in Google Play</a>${link('setup/', 'Setup guide', 'text-link')}</div>
       <p class="availability">Currently in testing. Google Play access may require an authorized tester account.</p>
     </div>
-    <figure class="app-preview">
-      <div class="screens">
-        <a href="${c.path('assets/messages.webp')}" aria-label="View the full Messages screen"><img src="${c.path('assets/messages.webp')}" width="480" height="853" alt="RelayInbox Messages screen showing fictional SMS and delivery states"></a>
-        <a href="${c.path('assets/status.webp')}" aria-label="View the full Status screen"><img src="${c.path('assets/status.webp')}" width="480" height="853" alt="RelayInbox Status screen with forwarding controls and the phone health checklist"></a>
+    <figure class="relay-story" aria-labelledby="story-caption">
+      <div class="story-scene" data-relay-story>
+        <div class="story-source"><span class="story-device-icon" aria-hidden="true">▯</span><div><strong>Your Android phone</strong><span>At home · SIM 1</span></div><span class="story-source-tag">SMS received</span></div>
+        <div class="story-route" aria-hidden="true"><span>RelayInbox</span><div class="story-track"><i></i><i></i><i></i></div><span>Your bot</span></div>
+        <div class="story-chat">
+          <div class="story-chat-header"><span class="story-avatar" aria-hidden="true">R</span><div><strong>Your Telegram inbox</strong><span>Personal bot</span></div><span class="story-demo-badge">DEMO</span></div>
+          <div class="story-chat-body">
+            <div class="story-message story-sms"><span class="story-message-label">SMS · SIM 1 · DemoParcel</span><p>Your parcel is ready for pickup.<br>Pickup code: <strong>482731</strong></p><span class="story-message-time">10:40</span></div>
+            <div class="story-message story-call"><span class="story-message-label">Incoming call</span><p>+1 202 555 0148</p><span class="story-message-time">10:41</span></div>
+            <div class="story-message story-battery"><span class="story-message-label">Battery alert</span><p>Charged enough · 90%</p><span class="story-message-time">10:42</span></div>
+          </div>
+        </div>
       </div>
-      <figcaption>Actual app layouts with fictional demo data.<br>Native UI renders, not physical-device screenshots.</figcaption>
+      <figcaption id="story-caption"><span>Illustrated demo · fictional messages.<br>Optional call and battery alerts shown.</span><button class="story-replay" type="button" data-story-replay hidden aria-label="Replay the forwarding demo">↻ Replay</button></figcaption>
     </figure>
   </section>
   <dl class="product-summary" aria-label="At a glance">
@@ -43,6 +52,7 @@ export default {
       <figure><a href="${c.path('assets/filters.webp')}" aria-label="View sender and text filters at a larger size"><img src="${c.path('assets/filters.webp')}" width="720" height="1280" loading="lazy" decoding="async" alt="Filters screen with fictional sender and keyword rules for important alerts and blocked forwarding"></a><figcaption><h3>Choose what reaches you</h3><p>Filter by sender or message text, and configure optional local alerts for important messages.</p></figcaption></figure>
       <figure><a href="${c.path('assets/retry.webp')}" aria-label="View a pending delivery at a larger size"><img src="${c.path('assets/retry.webp')}" width="720" height="1280" loading="lazy" decoding="async" alt="Pending Messages view with a fictional SMS marked Retrying after a network or delivery failure"></a><figcaption><h3>See what is still waiting</h3><p>Check pending messages and the reason a delivery is waiting for another attempt.</p></figcaption></figure>
     </div>
+    <p class="supporting gallery-more">More app screens: <a href="${c.path('assets/messages.webp')}">Messages</a> · <a href="${c.path('assets/status.webp')}">Status and health checklist</a>.</p>
   </section>
   <section class="editorial-row">
     <div class="row-heading"><p class="eyebrow">Why RelayInbox</p><h2>Your bot.<br>One purchase.</h2></div>

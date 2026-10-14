@@ -43,9 +43,17 @@ for (const route of [...routes, '404.html']) {
     assert(img.a.width && img.a.height, `${file}: missing image dimensions`);
   }
   const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)];
-  assert.equal(scripts.length, 1, `${file}: unexpected scripts`);
-  assert.equal(attributes(scripts[0][1]).type, 'application/ld+json');
-  const schemas = JSON.parse(scripts[0][2]);
+  const schemaScript = one(scripts.filter(s => attributes(s[1]).type === 'application/ld+json'), `${file}: structured data`);
+  const runtimeScripts = scripts.filter(s => s !== schemaScript);
+  assert.equal(runtimeScripts.length, route === '' ? 1 : 0, `${file}: unexpected scripts`);
+  if (route === '') {
+    assert.equal(attributes(runtimeScripts[0][1]).src, c.path('assets/story.mjs'));
+    assert.equal(attributes(runtimeScripts[0][1]).type, 'module');
+    assert.equal(runtimeScripts[0][2], '');
+    assert(html.includes('data-story-replay hidden'), `${file}: progressive enhancement replay`);
+    assert(html.includes('Illustrated demo · fictional messages.'), `${file}: demo disclosure`);
+  }
+  const schemas = JSON.parse(schemaScript[2]);
   for (const schema of schemas) {
     assert.equal(schema['@context'], 'https://schema.org');
     assert(['WebPage', 'MobileApplication', 'BreadcrumbList'].includes(schema['@type']));
@@ -54,7 +62,7 @@ for (const route of [...routes, '404.html']) {
       schema.itemListElement.forEach((item, i) => { assert.equal(item.position, i + 1); assert(item.item.startsWith(c.url())); });
     }
   }
-  assert(!/"(?:aggregateRating|review|offers)"\s*:/.test(scripts[0][2]), `${file}: unsupported structured claims`);
+  assert(!/"(?:aggregateRating|review|offers)"\s*:/.test(schemaScript[2]), `${file}: unsupported structured claims`);
   if (route === '') assert(schemas.some(s => s['@type'] === 'MobileApplication' && s.name === 'RelayInbox' && s.operatingSystem === 'Android 7.0 or later'));
   const visible = html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]*>/g, ' ');
   assert(!/100% secure|nobody can access|guaranteed (?:delivery|recommendations)|AI-powered translation subscription|unlimited free forwarding/i.test(visible), `${file}: unverified product claim`);

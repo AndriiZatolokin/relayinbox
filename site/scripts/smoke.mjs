@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { config as c } from '../src/data/site-config.mjs';
 const target = process.env.SMOKE_URL || c.url();
 assert(target.endsWith('/'), 'SMOKE_URL needs a trailing slash');
-const routes = ['', 'setup/', 'privacy/', 'faq/', 'guides/forward-android-sms-to-telegram/', 'sitemap.xml', 'robots.txt', 'assets/site.css', 'assets/og-image.png', 'assets/status.webp', 'assets/messages.webp', 'favicon.svg'];
+const routes = ['', 'setup/', 'privacy/', 'faq/', 'guides/forward-android-sms-to-telegram/', 'sitemap.xml', 'robots.txt', 'assets/site.css', 'assets/story.mjs', 'assets/og-image.png', 'assets/status.webp', 'assets/messages.webp', 'assets/battery.webp', 'assets/filters.webp', 'assets/retry.webp', 'favicon.svg'];
 for (const route of routes) {
   const response = await fetch(new URL(route, target), { signal: AbortSignal.timeout(20000), redirect: 'error' });
   assert.equal(response.status, 200, `${route}: HTTP ${response.status}`);

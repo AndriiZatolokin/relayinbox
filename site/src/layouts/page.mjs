@@ -53,6 +53,7 @@ export function render(page) {
   <link rel="icon" href="${c.path('favicon.svg')}" type="image/svg+xml">
   <link rel="apple-touch-icon" href="${c.path('assets/app-icon.png')}">
   <link rel="stylesheet" href="${c.path('assets/site.css')}">
+  ${page.story ? `<script src="${c.path('assets/story.mjs')}" type="module"></script>` : ''}
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>
 </head>
 <body>
