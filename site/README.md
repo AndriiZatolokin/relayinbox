@@ -20,4 +20,6 @@ Product release status and Play-link approval are in `src/data/product-facts.mjs
 
 Assets reuse RelayInbox branding and app-view renders with fictional data. Captions disclose that they are native UI renders rather than physical-device screenshots.
 
+The overview gallery uses the English battery, filters, and retry captures from `store-assets/screenshots/en/` in the Android workspace. Website copies are 720 × 1280 WebP images with the complete frame preserved, exported at quality 85. The Messages and Status hero images remain separate. The gallery does not demonstrate live Telegram delivery or caller-number capture; the battery capture shows the older call-state setting only. No personal Telegram screenshots are published.
+
 The Android workspace maintains the full audit and owner handover under `docs/website/`. To refresh a separate public website repository from that workspace, run `node scripts/export-public.mjs`, review the export, then commit/push only its public files. Do not copy Android sources or private repository metadata.
